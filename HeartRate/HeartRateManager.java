@@ -280,105 +280,105 @@ public class HeartRateManager {
 
 // Object class for the program
 class HeartRates {
-    private String FNAME; // First Name
-    private String LNAME; // Last Name
+    private String fName; // First Name
+    private String lName; // Last Name
     // YOB = Year of Birth
-    private int YOB;
+    private int yob;
     // MOB = Month of Birth
-    private int MOB;
+    private int mob;
     // DOB = Day of Birth
-    private int DOB;
-    private int CURRENT_YEAR;
-    private int CURRENT_MONTH;
-    private int CURRENT_DAY;
-    private int AGE;
+    private int dob;
+    private int currentYear;
+    private int currentMonth;
+    private int currentDay;
+    private int age;
 
     // This is the constructor method for the object
-    public HeartRates(String FNAME, String LNAME, int YOB, int MOB, int DOB) {
-        this.FNAME = FNAME;
-        this.LNAME = LNAME;
+    public HeartRates(String fName, String lName, int yob, int mob, int dob) {
+        this.fName = fName;
+        this.lName = lName;
         Calendar calendar = Calendar.getInstance();
 
         // Sets various information about the current date of the year
-        CURRENT_YEAR = calendar.get(Calendar.YEAR);
-        CURRENT_MONTH = calendar.get(Calendar.MONTH);
-        CURRENT_DAY = calendar.get(Calendar.DAY_OF_MONTH);
+        currentYear = calendar.get(Calendar.YEAR);
+        currentMonth = calendar.get(Calendar.MONTH);
+        currentDay = calendar.get(Calendar.DAY_OF_MONTH);
 
         // Makes sure that the year is reasonable
-        if ((CURRENT_YEAR - YOB) > 110 || (CURRENT_YEAR - YOB) < 0 || MOB > 12 || MOB < 1 || DOB > 31 || DOB < 1) {
+        if ((currentYear - yob) > 110 || (currentYear - yob) < 0 || mob > 12 || mob < 1 || dob > 31 || dob < 1) {
             throw new ArithmeticException("The date of birth for this person is invalid");
         }
-        this.AGE = CURRENT_YEAR - YOB;
-        if (MOB > CURRENT_MONTH && DOB > this.CURRENT_DAY) {
-            this.AGE = this.AGE-1;
+        this.age = currentYear - yob;
+        if (mob > currentMonth && dob > this.currentDay) {
+            this.age = this.age-1;
         }
-        this.YOB = YOB;
-        this.MOB = MOB;
-        this.DOB = DOB;
+        this.yob = yob;
+        this.mob = mob;
+        this.dob = dob;
     }
     
     // This method calculates the age when given a year, month, and day.
-    private void calculateAge(int YOB, int MOB, int DOB) {
-        if ((this.CURRENT_YEAR - YOB) > 110 || (this.CURRENT_YEAR - YOB) < 0 || MOB > 12 || MOB < 1 || DOB > 31 || DOB < 1) {
+    private void calculateAge(int yob, int mob, int dob) {
+        if ((this.currentYear - yob) > 110 || (this.currentYear - yob) < 0 || mob > 12 || mob < 1 || dob > 31 || dob < 1) {
             throw new ArithmeticException("The new date of birth is invalid. Make sure your input is valid");
         } else {
-            this.AGE = this.CURRENT_YEAR - YOB;
+            this.age = this.currentYear - yob;
         }
-        if (MOB > this.CURRENT_MONTH && DOB > this.CURRENT_DAY) {
-            this.AGE = this.AGE -1;
+        if (mob > this.currentMonth && dob > this.currentDay) {
+            this.age = this.age -1;
         }
     }
     
     // The methods below are all mutator methods. They don't need too much explanation.
     // The one below is to set a given last name to the instance variable for last name.
-    public void setLNAME(String LNAME) {
-        this.LNAME = LNAME;
+    public void setLNAME(String lName) {
+        this.lName = lName;
     }
     // First Name
-    public void setFNAME(String FNAME) {
-        this.FNAME = FNAME;
+    public void setFNAME(String fName) {
+        this.fName = fName;
     }
     // Year of birth, things related to the birth date recalculates the age after it is called
-    public void setYOB(int YOB) {
-        calculateAge(YOB, this.MOB, this.DOB);
-        this.YOB = YOB;
+    public void setYOB(int yob) {
+        calculateAge(yob, this.mob, this.dob);
+        this.yob = yob;
     }
     // Month of birth
-    public void setMOB(int MOB) {
-        calculateAge(this.YOB, MOB, this.DOB);
-        this.MOB = MOB;
+    public void setMOB(int mob) {
+        calculateAge(this.yob, mob, this.dob);
+        this.mob = mob;
     }
     // Day of birth
-    public void setDOB(int DOB) {
-        calculateAge(this.YOB, this.MOB, DOB);
-        this.DOB = DOB;
+    public void setDOB(int dob) {
+        calculateAge(this.yob, this.mob, dob);
+        this.dob = dob;
     }
     // End of mutator methods
 
     // These are the various getter methods
     // Last Name getter method, gets the value for the instance variable LNAME
     public String getLNAME(){
-        return this.LNAME;
+        return this.lName;
     }
     // First Name
     public String getFNAME(){
-        return this.FNAME;
+        return this.fName;
     }
     // Year of Birth
     public int getYOB(){
-        return this.YOB;
+        return this.yob;
     }
     // Month of Birth
     public int getMOB(){
-        return this.MOB;
+        return this.mob;
     }
     // Day of birth
     public int getDOB(){
-        return this.DOB;
+        return this.dob;
     }
     // Age
     public int getAGE() {
-        return AGE;
+        return age;
     }
     // Target heart rate
     public String getTargetHeartRate() {
@@ -390,7 +390,7 @@ class HeartRates {
     }
     // Max heart rate
     public int getMaxHeartRate() {
-        int maxRate = 220 - this.AGE;
+        int maxRate = 220 - this.age;
         return maxRate;
     }
     // End of getter methods
@@ -399,9 +399,9 @@ class HeartRates {
     public void printInformation() {
         String targetRate = getTargetHeartRate();
         int maxRate = getMaxHeartRate();
-        System.out.println("First Name: " + this.FNAME);
-        System.out.println("Last Name: " +this.LNAME);
-        System.out.println("Age: " + this.AGE);
+        System.out.println("First Name: " + this.fName);
+        System.out.println("Last Name: " +this.lName);
+        System.out.println("Age: " + this.age);
         System.out.println("Maximum Heart rate: " + maxRate);
         System.out.println("Target Heart Rate: " + targetRate);
 

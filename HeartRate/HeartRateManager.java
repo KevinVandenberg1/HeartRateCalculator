@@ -2,7 +2,10 @@
 // Class: CS 145
 // NOTICE: CHATGPT, W3schools, GeeksforGeeks has been used as reference and for asking questions about various functions on Java.
 //         Nothing has been directly copied from these sources. They have merely been used to further my understanding towards Java.
-//          
+//
+// SECOND NOTICE: I have changed the instance variables FOR HeartRates class to follow proper naming conventions
+//                Take this into account while going over my submission as they were originally incorrect.
+//                
 // POSSIBLE EXTRA CREDIT:
 // - I added a functionality to the program using Arraylist to let the user add as many people as they want
 //   without restarting the program. This is found on line 21, and lines 219 to 247. Lines 219 - 247 consists of the
